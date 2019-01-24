@@ -7,9 +7,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.location.LocationProvider;
 import android.os.Bundle;
-import android.os.LocaleList;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +25,6 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.client.cache.Resource;
 
 
 public class WeatherController extends AppCompatActivity {
@@ -42,7 +39,6 @@ public class WeatherController extends AppCompatActivity {
     // Distance between location updates (1000m or 1km)
     final float MIN_DISTANCE = 1000;
 
-    // TODO: Set LOCATION_PROVIDER here:
     final String LOCATION_PROVIDER = LocationManager.GPS_PROVIDER;
 
 
@@ -51,7 +47,6 @@ public class WeatherController extends AppCompatActivity {
     ImageView mWeatherImage;
     TextView mTemperatureLabel;
 
-    // TODO: Declare a LocationManager and a LocationListener here:
     LocationManager mLocationManager;
     LocationListener mLocationListener;
 
@@ -76,8 +71,6 @@ public class WeatherController extends AppCompatActivity {
 
     }
 
-
-    // TODO: Add onResume() here:
     @Override
     protected void onResume() {
         super.onResume();
@@ -100,8 +93,6 @@ public class WeatherController extends AppCompatActivity {
         letsDoSomeNetworking(requestParams);
     }
 
-
-    // TODO: Add getWeatherForNewCity(String city) here:
     private void getWeatherForCurrentLocation() {
         mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mLocationListener = new LocationListener() {
@@ -166,11 +157,6 @@ public class WeatherController extends AppCompatActivity {
         }
     }
 
-    // TODO: Add getWeatherForCurrentLocation() here:
-
-
-
-    // TODO: Add letsDoSomeNetworking(RequestParams params) here:
     private void letsDoSomeNetworking(RequestParams params) {
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(WEATHER_URL, params, new JsonHttpResponseHandler() {
@@ -190,18 +176,12 @@ public class WeatherController extends AppCompatActivity {
         });
     }
 
-
-    // TODO: Add updateUI() here:
     private void updateUI (WeatherDataModel weather) {
         mCityLabel.setText(weather.getCity());
         mTemperatureLabel.setText(weather.getTemperature());
         int resourceID = getResources().getIdentifier(weather.getIconName(), "drawable", getPackageName());
         mWeatherImage.setImageResource(resourceID);
     }
-
-
-    // TODO: Add onPause() here:
-
 
     @Override
     protected void onPause() {
