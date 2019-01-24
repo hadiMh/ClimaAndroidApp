@@ -39,7 +39,7 @@ public class WeatherController extends AppCompatActivity {
     // Distance between location updates (1000m or 1km)
     final float MIN_DISTANCE = 1000;
 
-    final String LOCATION_PROVIDER = LocationManager.GPS_PROVIDER;
+    final String LOCATION_PROVIDER = LocationManager.NETWORK_PROVIDER;
 
 
     // Member Variables:
